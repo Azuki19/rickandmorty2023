@@ -1,35 +1,65 @@
 
-function obtenerFavoritos() {
-    // Implementa la lógica para obtener favoritos
-}
+var container = document.getElementById("personajes-container");
 
-// Otra parte del código
+dataRickAndMorty.forEach(function (personaje) {
+
+    var tarjeta = document.createElement("div");
+    tarjeta.className = "Personaje";
+
+    
+    tarjeta.innerHTML = `
+        <div class="contenedor-verdeo">
+            <div class="contenedor-verdec">
+                <a href="./Personaje${personaje.id}.html">
+                    <img src="${personaje.image}" alt="${personaje.name}">
+                </a>
+            </div>
+            <div class="nameandfav">
+                <div class="name"><h2>${personaje.name}</h2></div>
+                <div class="estrella"></div>
+            </div>
+        </div>
+    `;
+
+   
+    container.appendChild(tarjeta);
+});
 
 
+var inputBusqueda = document.getElementById("barra-busqueda-input");
 
-// Obtener y mostrar personajes favoritos al cargar la página Favoritos
-const favoritosContainer = document.getElementById("favoritos-container");
+inputBusqueda.addEventListener("input", function () {
+    
+    var valorBusqueda = inputBusqueda.value.toLowerCase();
 
-function actualizarPersonajesFavoritos() {
-    favoritosContainer.innerHTML = ""; // Limpiamos el contenedor
+    
+    var tarjetas = document.getElementsByClassName("Personaje");
 
-    const favoritos = obtenerFavoritos();
-
-    favoritos.forEach(nombrePersonaje => {
-        const personaje = dataRickAndMorty.find(p => p.name === nombrePersonaje);
-        if (personaje) {
-            const tarjeta = crearTarjeta(personaje); // Utiliza la función crearTarjeta de Main.js
-            favoritosContainer.appendChild(tarjeta);
+    // ocultar tarjetas segun la busqueda
+    for (var i = 0; i < tarjetas.length; i++) {
+        var tarjeta = tarjetas[i];
+        var nombrePersonaje = tarjeta.querySelector(".name h2").textContent.toLowerCase();
+        if (nombrePersonaje.includes(valorBusqueda)) {
+            tarjeta.style.display = "block"; // Muestra la tarjeta
+        } else {
+            tarjeta.style.display = "none"; // Oculta la tarjeta
         }
+    }
+});
+
+var estrellas = document.getElementsByClassName("estrella");
+
+for (var i = 0; i < estrellas.length; i++) {
+    estrellas[i].addEventListener("click", function () {
+        // Cambia las clases de la estrella (de vacía a rellena o viceversa)
+        if (this.classList.contains("estrella-vacia")) {
+            this.classList.remove("estrella-vacia");
+            this.classList.add("estrella-rellena");
+        } else {
+            this.classList.remove("estrella-rellena");
+            this.classList.add("estrella-vacia");
+        }
+
+        
     });
 }
-
-// Llama a la función después de cargar Main.js
-document.addEventListener("DOMContentLoaded", function () {
-    actualizarPersonajesFavoritos();
-});
-
-const favoritos = obtenerFavoritos();
-favoritos.forEach(nombrePersonaje => {
-    // Resto del código
-});

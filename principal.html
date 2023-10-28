@@ -9,12 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href= "index.css">
+    <link rel="stylesheet" href= "principal.css">
     <title>Main Page - Rick & Morty</title>
     
 </head>
 <body>
 
+    <section id="inicio">
     <div class="primerbanner" id="primerbanner">
 
         <div class="cajatexto">
@@ -41,7 +42,9 @@
     
 
     </div>
+</section>
     
+    <section id="galeria">
     <div class="segundobanner">
 
         <div class="titulogaleria">
@@ -56,22 +59,22 @@
               <a href="#item-3" class="arrow-prev arrow"></a>
               <a href="#item-2" class="arrow-next arrow"></a>
             </div>
-        
             <div class="carousel-item item-2">
               <a href="#item-1" class="arrow-prev arrow"></a>
               <a href="#item-3" class="arrow-next arrow"></a>
             </div>
-        
             <div class="carousel-item item-3">
               <a href="#item-2" class="arrow-prev arrow"></a>
               <a href="#item-1" class="arrow-next arrow"></a>
             </div>
-        
           </div>
+          
         
 
     </div>
+</section>
 
+    <section id="quienes-somos">
     <div class="tercerbanner">
 
         <div class="titulonosotros">
@@ -136,7 +139,9 @@
         </div>
 
     </div>
+</section>
 
+    <section id="contacto"></section>
     <div class="cuartobanner">
 
         <div class="contenedorcont">
@@ -177,6 +182,7 @@
         </div>
 
     </div>
+</section>
 
     <div class="barrita">
 
@@ -191,19 +197,19 @@
 
         <div class="caja">
             <div>    
-                <button class="menu"><a href="./principal.html" > <strong>INICIO </strong></button></a>
+                <button class="menu"><a href="#inicio"> <strong>INICIO </strong></button></a>
             </div>
             <gap></gap>
             <div>
-                <button class="menu"> <a href="./principal.html"> <strong>GALERIA</strong> </button></a>
+                <button class="menu"> <a href="#galeria"> <strong>GALERIA</strong> </button></a>
             </div>
             <gap></gap>
             <div>
-                <button class="menu"> <a href="./principal.html" > <strong> ¿QUIENES SOMOS?</strong></button></a>
+                <button class="menu"> <a href="#quienes-somos" > <strong> ¿QUIENES SOMOS?</strong></button></a>
             </div>
             <gap></gap>
             <div>
-                <button class="menu"> <a href="./principal.html"> <strong>CONTACTO</strong></button> </a>
+                <button class="menu"> <a href="#contacto"> <strong>CONTACTO</strong></button> </a>
             </div>
             <gap></gap>
             <div>
@@ -213,10 +219,13 @@
             <div>
                 <button type="button" class="menu"> <a href="./Favorito.html" ><strong> FAVORITOS</strong></a></button>
             </div>
-            <div class="perfil"><a href="./perfil.html" ><img src="IMG/perfil.png" alt=""></a></div>
+            <div class="perfil"><a href="./perfil.html" ><img class="fotoana" src="./imagenes/fotos/Ana1.png"  alt=""></a></div>
 
         </div>
         
     </div>
+
+    <script src="principal.js"></script>
+
 </body>
 </html>

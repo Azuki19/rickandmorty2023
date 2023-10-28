@@ -15,6 +15,7 @@
 </head>
 <body>
 
+    <section id="inicio">
     <div class="primerbanner" id="primerbanner">
 
         <div class="cajatexto">
@@ -41,37 +42,39 @@
     
 
     </div>
+</section>
     
-    <div class="segundobanner">
-
-        <div class="titulogaleria">
-            <h1 class="titulogal"> GALERIA DE OTRO UNIVERSO </h1>
+    <section id="galeria">
+        <div class="segundobanner">
+    
+            <div class="titulogaleria">
+                <h1 class="titulogal"> GALERIA DE OTRO UNIVERSO </h1>
+            </div>
+    
+            <div class="carousel-wrapper">
+                <span id="item-1"></span>
+                <span id="item-2"></span>
+                <span id="item-3"></span>
+                <div class="carousel-item item-1">
+                  <a href="#item-3" class="arrow-prev arrow"></a>
+                  <a href="#item-2" class="arrow-next arrow"></a>
+                </div>
+                <div class="carousel-item item-2">
+                  <a href="#item-1" class="arrow-prev arrow"></a>
+                  <a href="#item-3" class="arrow-next arrow"></a>
+                </div>
+                <div class="carousel-item item-3">
+                  <a href="#item-2" class="arrow-prev arrow"></a>
+                  <a href="#item-1" class="arrow-next arrow"></a>
+                </div>
+              </div>
+              
+            
+    
         </div>
+    </section>
 
-        <div class="carousel-wrapper">
-            <span id="item-1"></span>
-            <span id="item-2"></span>
-            <span id="item-3"></span>
-            <div class="carousel-item item-1">
-              <a href="#item-3" class="arrow-prev arrow"></a>
-              <a href="#item-2" class="arrow-next arrow"></a>
-            </div>
-        
-            <div class="carousel-item item-2">
-              <a href="#item-1" class="arrow-prev arrow"></a>
-              <a href="#item-3" class="arrow-next arrow"></a>
-            </div>
-        
-            <div class="carousel-item item-3">
-              <a href="#item-2" class="arrow-prev arrow"></a>
-              <a href="#item-1" class="arrow-next arrow"></a>
-            </div>
-        
-          </div>
-        
-
-    </div>
-
+    <section id="quienes-somos">
     <div class="tercerbanner">
 
         <div class="titulonosotros">
@@ -137,6 +140,7 @@
 
     </div>
 
+    <section id="contacto">    
     <div class="cuartobanner">
 
         <div class="contenedorcont">
@@ -191,19 +195,19 @@
 
         <div class="caja">
             <div>    
-                <button type="button" class="menu"> <strong>INICIO </strong></button>
+                <button type="button" class="menu"> <a href="#inicio" > <strong>INICIO </strong></button>
             </div>
             <gap></gap>
             <div>
-                <button class="menu"> <strong>GALERIA</strong> </button>
+                <button class="menu"> <a href="#galeria" > <strong>GALERIA</strong> </button>
             </div>
             <gap></gap>
             <div>
-                <button class="menu"> <strong> ¿QUIENES SOMOS?</strong></button>
+                <button class="menu"> <a href="#quienes-somos" > <strong> ¿QUIENES SOMOS?</strong></button>
             </div>
             <gap></gap>
             <div>
-                <button class="menu"> <strong>CONTACTO</strong></button>
+                <button class="menu"> <a href="#contacto" > <strong>CONTACTO</strong></button>
             </div>
             <gap></gap>
             <div>
@@ -218,5 +222,7 @@
 
         
     </div>
+
+    <script src="index.js"></script>
 </body>
 </html>

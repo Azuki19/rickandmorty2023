@@ -1,0 +1,514 @@
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.barrita {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+
+    background-color:transparent;
+    justify-content: space-around;
+    width: 99%;
+    top: 0;
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.caja {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 70px;
+    width: 1200px;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+}
+
+.cajita{
+    
+    display: flex;
+    height: 70px;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+
+.wiki {
+    font-size: 30px;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+}
+
+
+.iconprincipal {
+    width: 50px;
+    height: 50px;
+}
+
+.iconpagina {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+
+.menu {
+    background-color: transparent;
+    border-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 18px;
+}
+
+.registro{
+    background-color: rgb(165, 205, 7);
+    border-color: transparent;
+    border-radius: 15PX;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(0, 0, 0);
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+
+}
+
+a:link, a:visited, a:active {
+  text-decoration:none;
+  color: white;
+}
+
+
+
+
+
+
+
+.primerbanner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 0px;
+    height: 750px;
+    margin-top: 50px;
+    background-image: url(imagenes/fondo\ estrellas.jpeg);
+}
+
+.portalrym {
+    width: 300px;
+    height: 600px;
+}
+
+
+.nombrerym {
+    background-color: transparent;
+    padding: 0%;
+    border: 0px;
+}
+
+
+
+h5 {
+    color: white;
+    align-items: center;
+    justify-content: center;
+    background-color:transparent;
+    font-size: 17px;
+    background-color: transparent;
+    width: 500px;
+    height: 100px;
+    margin-left: 40px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.descubrelo{
+    background-color: rgb(165, 205, 7);
+    border-color: transparent;
+    border-radius: 40PX;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(0, 0, 0);
+    width: 200px;
+    height: 50px;
+    font-size: 15px;
+    margin: 20px;
+    margin-left: 40px;
+
+}
+
+
+
+
+
+
+.segundobanner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url(imagenes/fondo\ estrellas.jpeg);
+    font-family: 'Lilita One', cursive;
+}
+
+
+.titulogaleria {
+    display: flex;
+    flex-direction: row;
+    color: rgb(165, 205, 7);
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    width: 700px;
+    padding: 10px;
+    right: 400px;
+    font-family: 'Lilita One', cursive;
+}
+
+.titulogal {
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+}
+
+
+
+.carousel-wrapper {
+    height: 500px;
+    position: relative;
+    width: 900px;
+    display: block;
+    margin: 50px auto ;
+    border: 2px solid black;
+  }
+  
+  .carousel-item {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 25px 50px;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  .arrow{
+    border: solid rgb(165, 205, 7);
+    border-width: 0 10px 10px 0;
+    border-radius: 8px;
+    display: inline-block;
+    padding: 12px;
+    
+  }
+  .arrow-prev {
+    left: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(135deg);
+    border-radius: 8px;
+  
+  }
+  .arrow-next {
+    right: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    border-radius: 8px;
+  }
+  
+  [id^= "item"] {
+    display: none;
+  }
+  .item-1 {
+    z-index: 2;
+    opacity: 1;
+    background: url(imagenes/Carrusel2222/RyM11.png);
+    background-size: cover;
+  }
+  .item-2 {
+    background: url(imagenes/Carrusel2222/RyM22.png);
+    background-size: cover;
+  }
+  .item-3 {
+    background: url(imagenes/Carrusel2222/RyM4.png);
+    background-size: cover;
+  }
+  
+  *:target ~ .item-1{
+    opacity: 0;
+  }
+  #item-1:target ~ .item-1 {
+    opacity: 1;
+  
+  }
+  #item-2:target ~ .item-2, #item-3:target ~ .item-3 {
+    z-index: 3;
+    opacity: 1;
+} 
+
+
+
+
+
+  
+
+.tercerbanner {
+    background-image: url(imagenes/fondo\ verde\ estrellas.png);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 850px;
+}
+
+.titulonosotros {
+
+    background-color: transparent;
+    margin-top: 150px;
+    margin-bottom: 0px;
+    width: 700px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:0%;
+    font-family: 'Lilita One', cursive;
+    font-size: 30px;
+}
+
+.fotosperfiles {
+  margin-top: 0px;
+  
+  
+}
+
+.fotos {
+    background-color: transparent;
+    height: 200px;
+    width: 1020px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
+    margin-top: 5px;
+    padding: 0;
+
+}
+
+.perfil {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.nombreperfiles {
+  background-color:transparent;
+  height: 50px;
+  width: 1020px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto;
+
+}
+.nombre {
+  background-color: transparent;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+
+}
+
+h3 {
+  font-family: 'Lilita One', cursive;
+  font-size: 30px;
+  font-style: bold;
+  text-align: center;
+}
+
+
+.textoperfiles {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  padding: 10px;
+
+
+}
+
+.textoo{
+  background-color: transparent;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+p {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+ 
+}
+
+
+
+
+
+
+
+
+.cuartobanner {
+
+  background-color: rgb(49, 146, 62);
+  height: 400PX;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+.contenedorcont{
+  width: 100%;
+  height: 60px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+
+}
+
+.titulocontacto {
+
+  display: flex;
+  color: rgb(165, 205, 7);
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  width: 700px;
+  height: 50px;
+  padding: 5px;
+  font-family: 'Lilita One', cursive;
+
+}
+
+.titulocont {
+
+  align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.contact1 {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  width: 1200px;
+  margin-top: 50px;
+  color: white;
+}
+
+.contact2 {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  width: 900px;
+  color: white;
+}
+
+.cajaicono {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  width: 300px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+.boticono{
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  width: 300px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  border-color: transparent;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+
+}
+
+.icono {
+  height: 80px;
+  width: 80px;
+  display: flex;
+}
+
+.cajaemail{
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  width: 500px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+.boticonom {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  width: 450px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  border-color: transparent;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+
+}

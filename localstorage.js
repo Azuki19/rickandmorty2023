@@ -1,1 +1,0 @@
-const storage = window.localStorage

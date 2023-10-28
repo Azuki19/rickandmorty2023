@@ -68,7 +68,6 @@ a:link, a:visited, a:active {
 
 .ESTRELLA {
     float: right;
-    background-image: url(./IMG/baseline_star_outline_white_48dp.png);
     background-size: 70px;
     background-color: transparent;
     border-color: transparent;
@@ -225,5 +224,10 @@ p {
 .perfil {
     display: flex;
     align-items: center;
+
+}
+
+.fotoana{
+    height: 50px;
 
 }

@@ -20,10 +20,11 @@
             </div>
 
             <div class="adentro">
-                <button class="editar" href="#"> EDITAR IMAGEN </button>
                 <div class="info">
                     <h2> RICKFAN321</h2>
                     <p> bestrickfan@gmail.com</p>
+                        <p class="contrass" id="passwordText"></p>
+                    
                 </div>
             </div>
 
@@ -33,35 +34,43 @@
 
             <div class="contenedor">
                 <h1> PERFIL </h1>
+                <div class="mensaje-emergente" id="mensajeEmergente"></div>
+                <div class="mensaje-emergente" id="mensajeContrasena"></div>
 
                 <div class="botones">
 
                     <div class="todoocont"> 
                         <div class="imagc"> <img src="IMG INICIO Y REGISTRO/usuario-de-perfil.png" class="iconop"> </div> <gap> </gap>
-                        <div> <input class="cambiar" type="text" placeholder= "Cambiar Usuario"></div>
+                        <div> <input class="cambiar" type="text" id="cambiarUsuario" placeholder= "Cambiar Usuario"></div>
                     </div>
 
                     <div class="todocont">
 
                         <div class="imagc"> <img src="IMG INICIO Y REGISTRO/emailverde.png" class="iconop"> </div> <gap> </gap>
                         <div> 
-                            <div> <input class="cambiar" type="text" placeholder= "Cambiar Email"></div> 
+                            <div> <input class="cambiar" type="text" id="cambiarCorreo" placeholder= "Cambiar Email"></div> 
                       </div>
                     </div>  
                     
                     <div class="todocontt">
                         <div class="imagc"> <img src="IMG INICIO Y REGISTRO/candado.png" class="iconop"> </div> <gap> </gap>
-                        <div> <input class="cambiar" type="text" placeholder= "Cambiar Contraseña"></div>
+                        <div> <input class="cambiar" type="text" id="cambiarContra" placeholder= "Cambiar Contraseña"></div>
                     </div>
 
                     
                     
 
                 </div>
-
-                <div>
-                    <button class="cerrar" href="#"> CERRAR SESION </button>
+                <div style="display: flex;"></div>
+                    <button class="guardar" id="botonguardar" href="#"> Guardar </button>
+                    <button class="cerrar"> <a href="./blanco.html"> Cerrar </button>
+                
+                
                 </div>
+
+                </div>
+                </div>
+            
             
 
             </div>
@@ -95,11 +104,11 @@
             </div>
             <gap></gap>
             <div>
-                <button class="menu"> <a href="./principal.html"><strong> ¿QUIENES SOMOS?</strong></button></a>
+                <button class="menu"> <a href="./principal.html" ><strong> ¿QUIENES SOMOS?</strong></button></a>
             </div>
             <gap></gap>
             <div>
-                <button class="menu"> <a href="./principal.html"><strong>CONTACTO</strong></button></a>
+                <button class="menu"> <a href="./principal.html" ><strong>CONTACTO</strong></button></a>
             </div>
             <gap></gap>
             <div>
@@ -107,9 +116,11 @@
             </div>
             <gap></gap>
             <div>
-                <button type="button" class="menu"> <a href="./Favorito.html" ><strong> FAVORITOS</strong></a></button>
+                <button class="menu"> <a href="./Favorito.html" ><strong> FAVORITOS</strong></a></button>
             </div>
+
         </div>
     
+        <script src="perfil.js"></script>
 </body>
 </html>

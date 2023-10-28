@@ -24,7 +24,7 @@ text-align: center;
 .center-box {
     background-color: rgba(255, 255, 255, 0.644);
     width: 500px;
-    height: 320px;
+    height: 330px;
     box-shadow: 0 5px 10px rgba(165, 165, 173, 0.604);
     text-align: center;
     padding: 0; 
@@ -103,7 +103,7 @@ text-align: center;
 }
 .login-container button {
     background-color: #A5CD07;
-    color: rgb(0, 0, 0);
+    color: rgb(252, 248, 248);
     border: none;
     padding: 10px 15px;
     border-radius: 20px;
@@ -129,6 +129,9 @@ text-align: center;
     
 }  
 .remember{
+    display: flex;
+    width: 95px;
+    border: none;
     position: absolute;
     bottom: 4%;
     font-size: 12px;
@@ -165,15 +168,28 @@ text-align: center;
     width: 240px;
     background-color: transparent
 }
+
 .primercontenedor {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 150px;
+    height: 100px;
     margin: 0;
 }
 
+.mensaje { 
+    display: flex;
+    flex-direction: row;    
+    align-items: center;
+    justify-content: center; 
+    margin-left: 90px;      
+    height: 10px;
+    width: 250px;
+    font-size: 10px;
+    color: rgb(175, 16, 16);
+
+}
 
 
 a:link, a:visited, a:active {
@@ -184,3 +200,4 @@ a:link, a:visited, a:active {
 .abajo {
     background-color: aquamarine;
 }
+

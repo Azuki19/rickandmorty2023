@@ -114,6 +114,19 @@ text-align: center;
     font-family: 'Poppins', sans-serif;
 
 }
+
+.mensaje { 
+    display: flex;
+    flex-direction: row;    
+    align-items: center;
+    justify-content: center; 
+    margin-left: 20px;      
+    height: 10px;
+    width: 250px;
+    font-size: 10px;
+    color: rgb(175, 16, 16);
+}
+
 .forgot{
     position: absolute;
     bottom: 4%;

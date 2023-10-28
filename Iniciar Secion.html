@@ -11,47 +11,45 @@
 
 </head>
 <body>
-
-    <div class="container">
-
-    </div>
-
-
-    <div class="fondo">
-    </div>
+    <div class="fondo"></div>
     <div class="center-box">
         
         <div class="login-container">
-            
+            <div class="mensaje"  id="mensaje"></div> 
             <h2>INICIAR SESIÓN</h2>
-            <form>
-
-                <div class="primercontenedor">
-
+            <div id="login-form">
+                
+                <div class="primercontenedor">                                                      
                     <div class="todocont">
-                        <div class="imgen"> <img src="IMG INICIO Y REGISTRO/usuario-de-perfil.png" class="foto"> </div> <gap> </gap> <div class="diveentrada">  <input type="text" placeholder="Username"> </div>
-                    </div>
+                        <div class="imgen"> <img src="IMG INICIO Y REGISTRO/usuario-de-perfil.png" class="foto"> 
+                        </div> <gap> </gap> 
+                        <div class="diveentrada" id="nameimput">  
+                            <input type="text" placeholder="Usuario" id="user-name" name="username" required></div>                          
+                            </div>
 
                      <div class="todocont">    
-                        <div class="imagen"> <img src="IMG INICIO Y REGISTRO/candado.png" class="foto"> </div> <gap> </gap> <div class="diveentrada"> <input type="password" placeholder="Password"> </div>
-                    </div>
-
+                        <div class="imagen"> <img src="IMG INICIO Y REGISTRO/candado.png" class="foto"> 
+                        </div> <gap> </gap> 
+                        <div class="diveentrada"> 
+                            <input type="password" placeholder="Contraseña" id="password" name="password" required></div></div>
+                            </div>
+                   
                     <div class="botonon-c">
-                        <button type="Login"> <a href="./Main.html" target="_blank"> Iniciar Sesión</a></button> 
+                        <button id= "Login" type="submit">Iniciar Sesión</button> 
                     </div>
                 </div>
 
                 <div class="abajo">
-                    <div class="forgot"><a href="">Forgot password?</a></div>
-                    <div class="remember">Remember</div>
+                    <div class="forgot"><a href="">Olvidó la contraseña??</a></div>
+                    <div class="remember">Recordar</div>
                     <div class="box"><input type="checkbox" id="Re"></div>
                 </div>
 
 
-            </form>
+            </div>
+           
         </div>
     </div>
-
-
+    <script src="Iniciar Secion.js"></script>
 </body>
 </html>

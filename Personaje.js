@@ -55,3 +55,4 @@ starIcon.addEventListener('click', function () {
         starIcon.src = starOutlineImage;
     }
 });
+

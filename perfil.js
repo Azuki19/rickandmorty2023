@@ -22,66 +22,50 @@ function esContrasenaValida(contrasena) {
     return contrasena.length >= 8;
 }
 
-// Función para obtener la lista de registros desde el localStorage
-function obtenerListaRegistros() {
-    const listaRegistros = JSON.parse(localStorage.getItem('listaRegistros')) || [];
-    return listaRegistros;
-}
-
-// Función para realizar el hash de la contraseña
-function hashContrasena(contrasena) {
-    // Aquí puedes usar un algoritmo de hash seguro, como bcrypt
-    // Este ejemplo utiliza un hash simple con btoa (Base64 encoding)
-    return btoa(unescape(encodeURIComponent(contrasena)));
-}
-
-// Función para cargar la información del último usuario en el perfil
-function cargarUltimoUsuario() {
-    const listaRegistros = obtenerListaRegistros();
-    if (listaRegistros.length > 0) {
-        const ultimoRegistro = listaRegistros[listaRegistros.length - 1];
-        document.querySelector(".info h2").textContent = ultimoRegistro.usuario;
-        document.querySelector(".info p").textContent = ultimoRegistro.correo;
-        document.querySelector(".contrass").textContent = "••••••••"; // Contraseña enmascarada
-    }
-}
-
-// Función para actualizar el perfil y almacenar en localStorage
 function actualizarPerfil() {
-    // Obtener los nuevos valores desde los campos de entrada
+    const usuarioActualElement = document.querySelector(".info h2");
+    const correoActualElement = document.querySelector(".info p");
+    const contrasenaActualElement = document.querySelector(".contrass");
+
+    const usuarioActual = usuarioActualElement.textContent;
+    const correoActual = correoActualElement.textContent;
+    const contrasenaActual = contrasenaActualElement.textContent;
+
     const nuevoUsuario = document.getElementById("cambiarUsuario").value;
     const nuevoCorreo = document.getElementById("cambiarCorreo").value;
     const nuevaContra = document.getElementById("cambiarContra").value;
 
-    // ... (código de validación)
-
-    // Obtener la lista actual de registros desde el Local Storage
-    const listaRegistros = obtenerListaRegistros();
-
-    // Crear un nuevo registro con la contraseña encriptada (hashed)
-    const nuevoRegistro = {
-        usuario: nuevoUsuario,
-        correo: nuevoCorreo,
-        contrasena: hashContrasena(nuevaContra)
-    };
-
-    // Agregar el nuevo registro a la lista
-    listaRegistros.push(nuevoRegistro);
-
-    // Almacenar la lista actualizada en el Local Storage
-    localStorage.setItem('listaRegistros', JSON.stringify(listaRegistros));
-
-    // Actualizar los elementos en la página solo si los valores han cambiado
     if (nuevoUsuario !== '') {
-        document.querySelector(".info h2").textContent = nuevoUsuario;
+        usuarioActualElement.textContent = nuevoUsuario;
     }
-
     if (nuevoCorreo !== '') {
-        document.querySelector(".info p").textContent = nuevoCorreo;
+        correoActualElement.textContent = nuevoCorreo;
+    }
+    if (nuevaContra !== '') {
+        contrasenaActualElement.textContent = nuevaContra;
     }
 
-    // No mostramos la contraseña real, solo una máscara
-    document.querySelector(".contrass").textContent = "••••••••";
+    const activeUserEmail = sessionStorage.getItem('activeUser');
+    const storedUserList = JSON.parse(localStorage.getItem("userList")) || [];
+
+    const activeUserIndex = storedUserList.findIndex(user => user.email === activeUserEmail);
+
+    if (activeUserIndex !== -1) {
+        const currentUser = storedUserList[activeUserIndex];
+
+        if (nuevoUsuario !== '') {
+            currentUser.username = nuevoUsuario;
+        }
+        if (nuevoCorreo !== '') {
+            currentUser.email = nuevoCorreo;
+        }
+        if (nuevaContra !== '') {
+            currentUser.password = nuevaContra;
+        }
+
+        storedUserList[activeUserIndex] = currentUser;
+        localStorage.setItem("userList", JSON.stringify(storedUserList));
+    }
 
     // Restablecer los campos de entrada
     document.getElementById("cambiarUsuario").value = '';
@@ -89,9 +73,32 @@ function actualizarPerfil() {
     document.getElementById("cambiarContra").value = '';
 }
 
+
 // Agregar un controlador de eventos para el botón "Guardar"
 const botonGuardar = document.getElementById("botonguardar");
 botonGuardar.addEventListener("click", actualizarPerfil);
 
-// Cargar la información del último usuario al cargar la página
-window.addEventListener("load", cargarUltimoUsuario);
+// Función para obtener los datos del usuario del LocalStorage
+function obtenerDatosUsuario() {
+    const usuarioActual = document.querySelector(".info h2");
+    const correoActual = document.querySelector(".info p");
+    const contrasenaActual = document.querySelector(".contrass");
+
+    // Obtener datos del usuario que ha iniciado sesión
+    const activeUserEmail = sessionStorage.getItem('activeUser');
+    const storedUserList = JSON.parse(localStorage.getItem("userList")) || [];
+
+    // Buscar al usuario activo en la lista de usuarios almacenados
+    const activeUser = storedUserList.find(user => user.email === activeUserEmail);
+
+    // Mostrar los datos del usuario si están disponibles en el sessionStorage y la lista de usuarios
+    if (activeUser) {
+        usuarioActual.textContent = activeUser.username;
+        correoActual.textContent = activeUser.email;
+        contrasenaActual.textContent = activeUser.password;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    obtenerDatosUsuario();
+});

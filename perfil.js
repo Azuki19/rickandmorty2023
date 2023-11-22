@@ -35,6 +35,18 @@ function actualizarPerfil() {
     const nuevoCorreo = document.getElementById("cambiarCorreo").value;
     const nuevaContra = document.getElementById("cambiarContra").value;
 
+    // Validar el nuevo correo
+    if (nuevoCorreo !== '' && !esCorreoValido(nuevoCorreo)) {
+        mostrarMensajeEmergente('Por favor, ingresa un correo electrónico válido.');
+        return;
+    }
+
+    // Validar la nueva contraseña
+    if (nuevaContra !== '' && !esContrasenaValida(nuevaContra)) {
+        mostrarMensajeEmergente('La contraseña debe tener al menos 8 caracteres.');
+        return;
+    }
+
     if (nuevoUsuario !== '') {
         usuarioActualElement.textContent = nuevoUsuario;
     }
@@ -72,6 +84,7 @@ function actualizarPerfil() {
     document.getElementById("cambiarCorreo").value = '';
     document.getElementById("cambiarContra").value = '';
 }
+
 
 
 // Agregar un controlador de eventos para el botón "Guardar"

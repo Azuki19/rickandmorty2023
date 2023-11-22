@@ -119,16 +119,11 @@ a:link, a:visited, a:active {
     margin: none;
     padding: 10px;
     border: 100px;
-    height: 1100px;
+    /* height: 1100px; Elimina esta línea */
 }
-
 .perfil {
     display: flex;
     align-items: center;
-
-}
-.fotoana{
-    height: 50px;
 
 }
 
@@ -160,27 +155,27 @@ a:link, a:visited, a:active {
     font-size: 10px;
 }
 
+
 #favoritos-container {
-    display: flex;
-    justify-content: center;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px; /* Espacio entre las tarjetas, ajusta según tus preferencias */
     max-width: 1000px; /* Ancho máximo del contenedor, ajusta según tus preferencias */
     margin: 0 auto;
+    justify-content: center;
 }
+
 
 .contenedor-verdeo {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     padding-top: 20px;
     width: 250px;
     height: auto;
-    border-radius:17px;
+    border-radius: 17px;
     background-color: #31923E;
-
 }
 
 .contenedor-verdec {
@@ -189,16 +184,14 @@ a:link, a:visited, a:active {
     justify-content: center;
     width: 238px;
     height: 240px;
-    border-radius:17px;
-    background-color:#A5CD07;
-
+    border-radius: 17px;
+    background-color: #A5CD07;
 }
 
 .contenedor-verdec img {
     max-width: 100%;
     height: 235px;
-    border-radius:17px;
-    
+    border-radius: 17px;
 }
 
 .nameandfav {
@@ -235,4 +228,8 @@ a:link, a:visited, a:active {
 .estrella-rellena {
     background-image: url("IMG/baseline_star_white_48dp.png"); 
     background-size: cover;
+}
+.fotoana{
+    height: 50px;
+
 }

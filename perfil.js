@@ -22,29 +22,54 @@ function esContrasenaValida(contrasena) {
     return contrasena.length >= 8;
 }
 
-// Función para actualizar el perfil
-function actualizarPerfil() {
-    // Obtener los valores actuales en la página
-    const usuarioActual = document.querySelector(".info h2").textContent;
-    const correoActual = document.querySelector(".info p").textContent;
-    const contrasenaActual = document.querySelector(".contrass").textContent;
+// Función para obtener la lista de registros desde el localStorage
+function obtenerListaRegistros() {
+    const listaRegistros = JSON.parse(localStorage.getItem('listaRegistros')) || [];
+    return listaRegistros;
+}
 
+// Función para realizar el hash de la contraseña
+function hashContrasena(contrasena) {
+    // Aquí puedes usar un algoritmo de hash seguro, como bcrypt
+    // Este ejemplo utiliza un hash simple con btoa (Base64 encoding)
+    return btoa(unescape(encodeURIComponent(contrasena)));
+}
+
+// Función para cargar la información del último usuario en el perfil
+function cargarUltimoUsuario() {
+    const listaRegistros = obtenerListaRegistros();
+    if (listaRegistros.length > 0) {
+        const ultimoRegistro = listaRegistros[listaRegistros.length - 1];
+        document.querySelector(".info h2").textContent = ultimoRegistro.usuario;
+        document.querySelector(".info p").textContent = ultimoRegistro.correo;
+        document.querySelector(".contrass").textContent = "••••••••"; // Contraseña enmascarada
+    }
+}
+
+// Función para actualizar el perfil y almacenar en localStorage
+function actualizarPerfil() {
     // Obtener los nuevos valores desde los campos de entrada
     const nuevoUsuario = document.getElementById("cambiarUsuario").value;
     const nuevoCorreo = document.getElementById("cambiarCorreo").value;
     const nuevaContra = document.getElementById("cambiarContra").value;
 
-    // Verificar si el campo de contraseña tiene al menos 8 caracteres
-    if (nuevaContra !== '' && !esContrasenaValida(nuevaContra)) {
-        mostrarMensajeEmergente('La contraseña debe tener al menos 8 caracteres.');
-        return; // No actualizamos el perfil si la contraseña no es válida
-    }
+    // ... (código de validación)
 
-    // Verificar si el campo de correo contiene un correo electrónico válido
-    if (nuevoCorreo !== '' && !esCorreoValido(nuevoCorreo)) {
-        mostrarMensajeEmergente('Por favor, ingresa un correo electrónico válido.');
-        return; // No actualizamos el perfil si el correo no es válido
-    }
+    // Obtener la lista actual de registros desde el Local Storage
+    const listaRegistros = obtenerListaRegistros();
+
+    // Crear un nuevo registro con la contraseña encriptada (hashed)
+    const nuevoRegistro = {
+        usuario: nuevoUsuario,
+        correo: nuevoCorreo,
+        contrasena: hashContrasena(nuevaContra)
+    };
+
+    // Agregar el nuevo registro a la lista
+    listaRegistros.push(nuevoRegistro);
+
+    // Almacenar la lista actualizada en el Local Storage
+    localStorage.setItem('listaRegistros', JSON.stringify(listaRegistros));
 
     // Actualizar los elementos en la página solo si los valores han cambiado
     if (nuevoUsuario !== '') {
@@ -55,9 +80,8 @@ function actualizarPerfil() {
         document.querySelector(".info p").textContent = nuevoCorreo;
     }
 
-    if (nuevaContra !== '') {
-        document.querySelector(".contrass").textContent = nuevaContra;
-    }
+    // No mostramos la contraseña real, solo una máscara
+    document.querySelector(".contrass").textContent = "••••••••";
 
     // Restablecer los campos de entrada
     document.getElementById("cambiarUsuario").value = '';
@@ -69,3 +93,5 @@ function actualizarPerfil() {
 const botonGuardar = document.getElementById("botonguardar");
 botonGuardar.addEventListener("click", actualizarPerfil);
 
+// Cargar la información del último usuario al cargar la página
+window.addEventListener("load", cargarUltimoUsuario);

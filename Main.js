@@ -94,4 +94,25 @@ function isFavorite(id) {
     return favorites.some(fav => fav.id === id);
 }
 
+var inputBusqueda = document.getElementById("barra-busqueda-input");
+
+inputBusqueda.addEventListener("input", function () {
+    
+    var valorBusqueda = inputBusqueda.value.toLowerCase();
+
+    
+    var tarjetas = document.getElementsByClassName("Personaje");
+
+    // ocultar tarjetas segun la busqueda
+    for (var i = 0; i < tarjetas.length; i++) {
+        var tarjeta = tarjetas[i];
+        var nombrePersonaje = tarjeta.querySelector(".name h2").textContent.toLowerCase();
+        if (nombrePersonaje.includes(valorBusqueda)) {
+            tarjeta.style.display = "block"; // Muestra la tarjeta
+        } else {
+            tarjeta.style.display = "none"; // Oculta la tarjeta
+        }
+    }
+});
+
 fetchRickAndMorty();

@@ -7,8 +7,21 @@ async function fetchRickAndMorty() {
 
         const data = json.results;
         renderCharacters(data);
+        updateStarStatus();
     } catch (error) {
         console.error("Error fetching data:", error);
+    }
+}
+
+function toggleFavoriteStatus(activeUser, characterId, estrella, name, image) {
+    if (isFavorite(characterId)) {
+        removeFavorite(activeUser, characterId);
+        estrella.classList.remove("estrella-rellena");
+        estrella.classList.add("estrella-vacia");
+    } else {
+        addFavorite(activeUser, characterId, name, image);
+        estrella.classList.remove("estrella-vacia");
+        estrella.classList.add("estrella-rellena");
     }
 }
 
@@ -37,16 +50,8 @@ function renderCharacters(data) {
         estrella.addEventListener('click', function (event) {
             event.stopPropagation();
             var characterId = estrella.getAttribute('data-id');
-
-            if (estrella.classList.contains("estrella-vacia")) {
-                estrella.classList.remove("estrella-vacia");
-                estrella.classList.add("estrella-rellena");
-                addFavorite(activeUser, characterId, personaje.name, personaje.image);
-            } else {
-                estrella.classList.remove("estrella-rellena");
-                estrella.classList.add("estrella-vacia");
-                removeFavorite(activeUser, characterId);
-            }
+            var activeUser = sessionStorage.getItem('activeUser');
+            toggleFavoriteStatus(activeUser, characterId, estrella, personaje.name, personaje.image);
         });
 
         tarjeta.addEventListener('click', function () {
@@ -55,7 +60,18 @@ function renderCharacters(data) {
     });
 }
 
-fetchRickAndMorty();
+function updateStarStatus() {
+    var activeUser = sessionStorage.getItem('activeUser');
+    var estrellas = document.querySelectorAll('.estrella');
+    estrellas.forEach(function (estrella) {
+        var characterId = estrella.getAttribute('data-id');
+        if (isFavorite(characterId)) {
+            estrella.classList.remove("estrella-vacia");
+            estrella.classList.add("estrella-rellena");
+        }
+    });
+}
+
 
 function addFavorite(user, id, name, image) {
     let favorites = JSON.parse(localStorage.getItem(`favorites_${user}`)) || [];
@@ -73,7 +89,9 @@ function removeFavorite(user, id) {
 }
 
 function isFavorite(id) {
-    let activeUser = sessionStorage.getItem('activeUser');
+    var activeUser = sessionStorage.getItem('activeUser');
     let favorites = JSON.parse(localStorage.getItem(`favorites_${activeUser}`)) || [];
     return favorites.some(fav => fav.id === id);
 }
+
+fetchRickAndMorty();

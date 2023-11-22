@@ -1,65 +1,67 @@
+const favoritesContainer = document.getElementById("favoritos-container");
 
-var container = document.getElementById("personajes-container");
+document.addEventListener("DOMContentLoaded", function() {
+    var activeUser = sessionStorage.getItem('activeUser');
 
-dataRickAndMorty.forEach(function (personaje) {
+    if (activeUser) {
+        let favorites = JSON.parse(localStorage.getItem(`favorites_${activeUser}`)) || [];
 
-    var tarjeta = document.createElement("div");
+        favorites.forEach(favorite => {
+            const tarjeta = createCharacterCard(favorite);
+            favoritesContainer.appendChild(tarjeta);
+        });
+    }
+
+    var inputBusqueda = document.getElementById("barra-busqueda-input");
+
+    inputBusqueda.addEventListener("input", function() {
+        var valorBusqueda = inputBusqueda.value.toLowerCase();
+        var tarjetas = document.getElementsByClassName("Personaje");
+
+        for (var i = 0; i < tarjetas.length; i++) {
+            var tarjeta = tarjetas[i];
+            var nombrePersonaje = tarjeta.querySelector(".name h2").textContent.toLowerCase();
+            if (nombrePersonaje.includes(valorBusqueda)) {
+                tarjeta.style.display = "block";
+            } else {
+                tarjeta.style.display = "none";
+            }
+        }
+    });
+});
+
+function createCharacterCard(character) {
+    const tarjeta = document.createElement("div");
     tarjeta.className = "Personaje";
 
-    
     tarjeta.innerHTML = `
         <div class="contenedor-verdeo">
             <div class="contenedor-verdec">
-                <a href="./Personaje${personaje.id}.html">
-                    <img src="${personaje.image}" alt="${personaje.name}">
+                <a href="./Personaje.html?id=${character.id}">
+                    <img src="${character.image}" alt="${character.name}">
                 </a>
             </div>
             <div class="nameandfav">
-                <div class="name"><h2>${personaje.name}</h2></div>
-                <div class="estrella"></div>
+                <div class="name"><h2>${character.name}</h2></div>
+                <div class="estrella estrella-rellena" data-id="${character.id}"></div>
             </div>
         </div>
     `;
 
-   
-    container.appendChild(tarjeta);
-});
+    var estrella = tarjeta.querySelector('.estrella');
+    estrella.addEventListener('click', function (event) {
+        event.stopPropagation();
+        var characterId = estrella.getAttribute('data-id');
 
-
-var inputBusqueda = document.getElementById("barra-busqueda-input");
-
-inputBusqueda.addEventListener("input", function () {
-    
-    var valorBusqueda = inputBusqueda.value.toLowerCase();
-
-    
-    var tarjetas = document.getElementsByClassName("Personaje");
-
-    // ocultar tarjetas segun la busqueda
-    for (var i = 0; i < tarjetas.length; i++) {
-        var tarjeta = tarjetas[i];
-        var nombrePersonaje = tarjeta.querySelector(".name h2").textContent.toLowerCase();
-        if (nombrePersonaje.includes(valorBusqueda)) {
-            tarjeta.style.display = "block"; // Muestra la tarjeta
-        } else {
-            tarjeta.style.display = "none"; // Oculta la tarjeta
-        }
-    }
-});
-
-var estrellas = document.getElementsByClassName("estrella");
-
-for (var i = 0; i < estrellas.length; i++) {
-    estrellas[i].addEventListener("click", function () {
-        // Cambia las clases de la estrella (de vacía a rellena o viceversa)
-        if (this.classList.contains("estrella-vacia")) {
-            this.classList.remove("estrella-vacia");
-            this.classList.add("estrella-rellena");
-        } else {
-            this.classList.remove("estrella-rellena");
-            this.classList.add("estrella-vacia");
-        }
-
-        
+        removeFavorite(activeUser, characterId);
+        tarjeta.remove();
     });
+
+    return tarjeta;
+}
+
+function removeFavorite(user, id) {
+    let favorites = JSON.parse(localStorage.getItem(`favorites_${user}`)) || [];
+    favorites = favorites.filter(fav => fav.id !== id);
+    localStorage.setItem(`favorites_${user}`, JSON.stringify(favorites));
 }

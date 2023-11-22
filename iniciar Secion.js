@@ -1,22 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const loginform = document.getElementById("login-form");
+    const loginForm = document.getElementById("login-form");
     const usernameInput = document.getElementById("user-name");
     const passwordInput = document.getElementById("password");
     const rememberCheckbox = document.getElementById("Re");
     const mensaje = document.getElementById("mensaje");
-    const LoginButton = document.getElementById("Login");
+    const loginButton = document.getElementById("Login");
 
-    // cargar datos previamente guardados
-    const storedUsername = localStorage.getItem("storedUsername");
-    const storedPassword = localStorage.getItem("storedPassword");
-
-    if (storedUsername && storedPassword) {
-        usernameInput.value = storedUsername;
-        passwordInput.value = storedPassword;
-        rememberCheckbox.checked = true;
-    }
-
-    LoginButton.addEventListener("click", function() {
+    loginButton.addEventListener("click", function() {
         const username = usernameInput.value.trim();
         const password = passwordInput.value;
 
@@ -30,27 +20,27 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-          // Obtener la lista de usuarios del localStorage
-          const userList = JSON.parse(localStorage.getItem("userList")) || [];
+        // Obtener la lista de usuarios del localStorage
+        const userList = JSON.parse(localStorage.getItem("userList")) || [];
 
-          // Buscar el usuario en la lista
-          const userData = userList.find(user => user.username === username && user.password === password);
-  
-          if (userData) {
-              mensaje.textContent = "Inicio de sesión exitoso. Redirigiendo...";
-              
-        // Verifica si el usuario ha seleccionado "Recordar"
-        if (rememberCheckbox.checked) {
-            // Guarda el nombre de usuario y la contraseña en el localStorage
-            localStorage.setItem("storedUsername", username);
-            localStorage.setItem("storedPassword", password);
-        } else {
-            // Borra los datos almacenados si no se seleccionó "Recordar"
-            localStorage.removeItem("storedUsername");
-            localStorage.removeItem("storedPassword");
-        }
+        // Buscar el usuario en la lista
+        const userData = userList.find(user => user.username === username && user.password === password);
 
-                          
+        if (userData) {
+            mensaje.textContent = "Inicio de sesión exitoso. Redirigiendo...";
+
+            // Establece al usuario como activo
+            sessionStorage.setItem('activeUser', userData.email);
+
+            // Verifica si el usuario ha seleccionado "Recordar"
+            if (rememberCheckbox.checked) {
+                localStorage.setItem("storedUsername", username);
+                localStorage.setItem("storedPassword", password);
+            } else {
+                localStorage.removeItem("storedUsername");
+                localStorage.removeItem("storedPassword");
+            }
+
             window.location.href = "./Main.html";
         } else {
             mensaje.textContent = "Usuario o contraseña incorrectos. Inténtalo de nuevo.";

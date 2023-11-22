@@ -17,55 +17,63 @@ function renderCharacters(data) {
         var tarjeta = document.createElement("div");
         tarjeta.className = "Personaje";
 
-        tarjeta.addEventListener('click', function () {
-            window.location.href = `./Personaje.html?id=${personaje.id}`;
-        });
-
         tarjeta.innerHTML = `
         <div class="contenedor-verdeo">
             <div class="contenedor-verdec">
-            <a href="./Personaje.html?id=${personaje.id}">
-            <img src="${personaje.image}" alt="${personaje.name}">
-        </a>
+                <a href="./Personaje.html?id=${personaje.id}">
+                    <img src="${personaje.image}" alt="${personaje.name}">
+                </a>
             </div>
             <div class="nameandfav">
                 <div class="name"><h2>${personaje.name}</h2></div>
-                <div class="estrella estrella-vacia"></div>
+                <div class="estrella ${isFavorite(personaje.id) ? 'estrella-rellena' : 'estrella-vacia'}" data-id="${personaje.id}"></div>
             </div>
         </div>
-    `;
+        `;
 
-    container.appendChild(tarjeta);
+        container.appendChild(tarjeta);
 
-    var estrella = tarjeta.querySelector('.estrella');
-    estrella.addEventListener('click', function () {
-        if (estrella.classList.contains("estrella-vacia")) {
-            estrella.classList.remove("estrella-vacia");
-            estrella.classList.add("estrella-rellena");
-        } else {
-            estrella.classList.remove("estrella-rellena");
-            estrella.classList.add("estrella-vacia");
-        }
+        var estrella = tarjeta.querySelector('.estrella');
+        estrella.addEventListener('click', function (event) {
+            event.stopPropagation();
+            var characterId = estrella.getAttribute('data-id');
+
+            if (estrella.classList.contains("estrella-vacia")) {
+                estrella.classList.remove("estrella-vacia");
+                estrella.classList.add("estrella-rellena");
+                addFavorite(activeUser, characterId, personaje.name, personaje.image);
+            } else {
+                estrella.classList.remove("estrella-rellena");
+                estrella.classList.add("estrella-vacia");
+                removeFavorite(activeUser, characterId);
+            }
+        });
+
+        tarjeta.addEventListener('click', function () {
+            window.location.href = `./Personaje.html?id=${personaje.id}`;
+        });
     });
-});
 }
 
 fetchRickAndMorty();
 
-
-var inputBusqueda = document.getElementById("barra-busqueda-input");
-
-inputBusqueda.addEventListener("input", function () {
-    var valorBusqueda = inputBusqueda.value.toLowerCase();
-    var tarjetas = document.getElementsByClassName("Personaje");
-
-    for (var i = 0; i < tarjetas.length; i++) {
-        var tarjeta = tarjetas[i];
-        var nombrePersonaje = tarjeta.querySelector(".name h2").textContent.toLowerCase();
-        if (nombrePersonaje.includes(valorBusqueda)) {
-            tarjeta.style.display = "block"; // Muestra la tarjeta
-        } else {
-            tarjeta.style.display = "none"; // Oculta la tarjeta
-        }
+function addFavorite(user, id, name, image) {
+    let favorites = JSON.parse(localStorage.getItem(`favorites_${user}`)) || [];
+    const exists = favorites.some(fav => fav.id === id);
+    if (!exists) {
+        favorites.push({ id, name, image });
+        localStorage.setItem(`favorites_${user}`, JSON.stringify(favorites));
     }
-});
+}
+
+function removeFavorite(user, id) {
+    let favorites = JSON.parse(localStorage.getItem(`favorites_${user}`)) || [];
+    favorites = favorites.filter(fav => fav.id !== id);
+    localStorage.setItem(`favorites_${user}`, JSON.stringify(favorites));
+}
+
+function isFavorite(id) {
+    let activeUser = sessionStorage.getItem('activeUser');
+    let favorites = JSON.parse(localStorage.getItem(`favorites_${activeUser}`)) || [];
+    return favorites.some(fav => fav.id === id);
+}

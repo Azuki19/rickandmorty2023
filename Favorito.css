@@ -160,7 +160,7 @@ a:link, a:visited, a:active {
     font-size: 10px;
 }
 
-#personajes-container {
+#favoritos-container {
     display: flex;
     justify-content: center;
     display: grid;

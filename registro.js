@@ -25,7 +25,25 @@ document.addEventListener("DOMContentLoaded", function() {
       mensaje.textContent = "La contraseña debe tener al menos 8 caracteres.";
       return;
   }
+
+  // Obtener la lista de usuarios del localStorage
+  const userList = JSON.parse(localStorage.getItem("userList")) || [];
+
+    // Verificar si el usuario ya está registrado
+    const userExists = userList.some(user => user.email === email);
+    if (userExists) {
+        mensaje.textContent = "Este correo electrónico ya está registrado.";
+        return;
+    }
+
+     // Agregar el nuevo usuario a la lista
+     const newUser = { username, email, password };
+     userList.push(newUser);
+
+
+   // Guardar la lista actualizada en el localStorage
+   localStorage.setItem("userList", JSON.stringify(userList));
   
-  window.location.href = "./Main.html";
+  window.location.href = "./Iniciar Secion.html";
     });
   });

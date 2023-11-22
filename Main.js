@@ -1,41 +1,64 @@
-
 var container = document.getElementById("personajes-container");
 
-dataRickAndMorty.forEach(function (personaje) {
+async function fetchRickAndMorty() {
+    try {
+        const response = await fetch("https://rickandmortyapi.com/api/character");
+        const json = await response.json();
 
-    var tarjeta = document.createElement("div");
-    tarjeta.className = "Personaje";
+        const data = json.results;
+        renderCharacters(data);
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+}
 
-    
-    tarjeta.innerHTML = `
+function renderCharacters(data) {
+    data.forEach(function (personaje) {
+        var tarjeta = document.createElement("div");
+        tarjeta.className = "Personaje";
+
+        tarjeta.addEventListener('click', function () {
+            window.location.href = `./Personaje.html?id=${personaje.id}`;
+        });
+
+        tarjeta.innerHTML = `
         <div class="contenedor-verdeo">
             <div class="contenedor-verdec">
-                <a href="./Personaje${personaje.id}.html">
-                    <img src="${personaje.image}" alt="${personaje.name}">
-                </a>
+            <a href="./Personaje.html?id=${personaje.id}">
+            <img src="${personaje.image}" alt="${personaje.name}">
+        </a>
             </div>
             <div class="nameandfav">
                 <div class="name"><h2>${personaje.name}</h2></div>
-                <div class="estrella"></div>
+                <div class="estrella estrella-vacia"></div>
             </div>
         </div>
     `;
 
-   
     container.appendChild(tarjeta);
+
+    var estrella = tarjeta.querySelector('.estrella');
+    estrella.addEventListener('click', function () {
+        if (estrella.classList.contains("estrella-vacia")) {
+            estrella.classList.remove("estrella-vacia");
+            estrella.classList.add("estrella-rellena");
+        } else {
+            estrella.classList.remove("estrella-rellena");
+            estrella.classList.add("estrella-vacia");
+        }
+    });
 });
+}
+
+fetchRickAndMorty();
 
 
 var inputBusqueda = document.getElementById("barra-busqueda-input");
 
 inputBusqueda.addEventListener("input", function () {
-    
     var valorBusqueda = inputBusqueda.value.toLowerCase();
-
-    
     var tarjetas = document.getElementsByClassName("Personaje");
 
-    // ocultar tarjetas segun la busqueda
     for (var i = 0; i < tarjetas.length; i++) {
         var tarjeta = tarjetas[i];
         var nombrePersonaje = tarjeta.querySelector(".name h2").textContent.toLowerCase();
@@ -46,19 +69,3 @@ inputBusqueda.addEventListener("input", function () {
         }
     }
 });
-
-var estrellas = document.getElementsByClassName("estrella");
-
-for (var i = 0; i < estrellas.length; i++) {
-    estrellas[i].addEventListener("click", function () {
-        // Cambia las clases de la estrella (de vacía a rellena o viceversa)
-        if (this.classList.contains("estrella-vacia")) {
-            this.classList.remove("estrella-vacia");
-            this.classList.add("estrella-rellena");
-        } else {
-            this.classList.remove("estrella-rellena");
-            this.classList.add("estrella-vacia");
-        }
-
-    });
-}

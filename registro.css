@@ -127,16 +127,6 @@ text-align: center;
     color: rgb(175, 16, 16);
 }
 
-.forgot{
-    position: absolute;
-    bottom: 4%;
-    font-size: 12px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    
-}
-
-
 .box {
     position: absolute;
     right: 35%;
@@ -178,15 +168,6 @@ text-align: center;
     background-color: transparent
 }
 
-.remember{
-    position: absolute;
-    bottom: 4%;
-    font-size: 12px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    right: 15%;
-}
-
 .contenedoruno {
     display: flex;
     flex-direction: column;
@@ -197,10 +178,5 @@ text-align: center;
 }
 
 
-
-a:link, a:visited, a:active {
-    text-decoration:none;
-    color: rgb(0, 0, 0);
-}
 
 

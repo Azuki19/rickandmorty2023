@@ -69,4 +69,3 @@ function actualizarPerfil() {
 const botonGuardar = document.getElementById("botonguardar");
 botonGuardar.addEventListener("click", actualizarPerfil);
 
-

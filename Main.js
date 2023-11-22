@@ -103,7 +103,7 @@ inputBusqueda.addEventListener("input", function () {
     
     var tarjetas = document.getElementsByClassName("Personaje");
 
-    // ocultar tarjetas segun la busqueda
+    
     for (var i = 0; i < tarjetas.length; i++) {
         var tarjeta = tarjetas[i];
         var nombrePersonaje = tarjeta.querySelector(".name h2").textContent.toLowerCase();

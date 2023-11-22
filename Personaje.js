@@ -1,18 +1,18 @@
-// Función para verificar si un personaje es favorito
+
 function isFavorite(id) {
     var activeUser = sessionStorage.getItem('activeUser');
     let favorites = JSON.parse(localStorage.getItem(`favorites_${activeUser}`)) || [];
     return favorites.some(fav => fav.id === id);
 }
 
-// Función para agregar un personaje como favorito
+
 function addFavorite(activeUser, id, name, image) {
     let favorites = JSON.parse(localStorage.getItem(`favorites_${activeUser}`)) || [];
     favorites.push({ id, name, image });
     localStorage.setItem(`favorites_${activeUser}`, JSON.stringify(favorites));
 }
 
-// Función para quitar un personaje de la lista de favoritos
+
 function removeFavorite(activeUser, id) {
     let favorites = JSON.parse(localStorage.getItem(`favorites_${activeUser}`)) || [];
     let updatedFavorites = favorites.filter(fav => fav.id !== id);
@@ -37,7 +37,7 @@ async function fetchCharacterInfo() {
         const response = await fetch(characterURL);
         const character = await response.json();
 
-        // Actualizar elementos HTML con la información del personaje
+        
         nombrePersonaje.textContent = character.name;
         speciePersonaje.textContent = character.species;
         genderPersonaje.textContent = character.gender;
@@ -49,33 +49,33 @@ async function fetchCharacterInfo() {
         imagenPersonaje.src = character.image;
         imagenPersonaje.alt = character.name;
 
-        // Obtener referencia al elemento de la estrella
+        
         const starIcon = document.getElementById('star-icon');
 
-        // Verificar si el personaje ya es favorito y actualizar la estrella en consecuencia
+        
         if (isFavorite(characterId)) {
             starIcon.src = 'IMG/baseline_star_white_48dp.png'; // Cambia la imagen a la estrella rellena
         } else {
-            starIcon.src = 'IMG/baseline_star_outline_white_48dp.png'; // Cambia la imagen a la estrella outline
+            starIcon.src = 'IMG/baseline_star_outline_white_48dp.png'; // Cambia la imagen a la estrella vacia
         }
 
-        // Agregar evento de clic a la estrella para agregar o quitar el personaje de favoritos
+        
         starIcon.addEventListener('click', function () {
             if (isFavorite(characterId)) {
-                // Si el personaje ya es favorito, quitarlo de la lista de favoritos
+                
                 removeFavorite(sessionStorage.getItem('activeUser'), characterId);
-                starIcon.src = 'IMG/baseline_star_outline_white_48dp.png'; // Cambia la imagen a la estrella outline
+                starIcon.src = 'IMG/baseline_star_outline_white_48dp.png'; 
             } else {
-                // Si el personaje no es favorito, agregarlo a la lista de favoritos
+                
                 const character = {
                     id: characterId,
                     name: nombrePersonaje.textContent,
                     image: imagenPersonaje.src
                 };
                 addFavorite(sessionStorage.getItem('activeUser'), characterId, character.name, character.image);
-                starIcon.src = 'IMG/baseline_star_white_48dp.png'; // Cambia la imagen a la estrella rellena
+                starIcon.src = 'IMG/baseline_star_white_48dp.png'; 
             }
-            // Recargar la página después de agregar/quitar de favoritos para reflejar los cambios en la lista de favoritos
+            
             location.reload();
         });
     } catch (error) {

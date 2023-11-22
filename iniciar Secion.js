@@ -20,19 +20,19 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        // Obtener la lista de usuarios del localStorage
+        
         const userList = JSON.parse(localStorage.getItem("userList")) || [];
 
-        // Buscar el usuario en la lista
+        
         const userData = userList.find(user => user.username === username && user.password === password);
 
         if (userData) {
             mensaje.textContent = "Inicio de sesión exitoso. Redirigiendo...";
 
-            // Establece al usuario como activo
+            
             sessionStorage.setItem('activeUser', userData.email);
 
-            // Verifica si el usuario ha seleccionado "Recordar"
+            
             if (rememberCheckbox.checked) {
                 localStorage.setItem("storedUsername", username);
                 localStorage.setItem("storedPassword", password);

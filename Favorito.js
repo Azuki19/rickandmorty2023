@@ -39,7 +39,6 @@ function createCharacterCard(character) {
         removeFavorite(activeUser, characterId);
         tarjeta.remove();
 
-        // Muestra en la página principal con estrella vacía
         showInMainWithEmptyStar(character);
     });
 
@@ -82,7 +81,6 @@ function createCharacterCardForMain(character) {
         var characterId = estrella.getAttribute('data-id');
         var activeUser = sessionStorage.getItem('activeUser');
 
-        // Añade a favoritos en la página principal
         addFavorite(activeUser, characterId, character.name, character.image);
 
         tarjeta.remove();
@@ -100,7 +98,6 @@ inputBusqueda.addEventListener("input", function () {
     
     var tarjetas = document.getElementsByClassName("Personaje");
 
-    // ocultar tarjetas segun la busqueda
     for (var i = 0; i < tarjetas.length; i++) {
         var tarjeta = tarjetas[i];
         var nombrePersonaje = tarjeta.querySelector(".name h2").textContent.toLowerCase();

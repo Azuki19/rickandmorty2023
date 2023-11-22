@@ -159,8 +159,8 @@ a:link, a:visited, a:active {
 #personajes-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px; /* Espacio entre las tarjetas, ajusta según tus preferencias */
-    max-width: 1000px; /* Ancho máximo del contenedor, ajusta según tus preferencias */
+    gap: 30px; 
+    max-width: 1000px; 
     margin: 0 auto;
     justify-content: center;
     

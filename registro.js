@@ -26,21 +26,21 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
       }
 
-      // Obtener la lista de usuarios del localStorage
+      
       const userList = JSON.parse(localStorage.getItem("userList")) || [];
 
-      // Verificar si el usuario ya está registrado
+      
       const userExists = userList.some((user) => user.email === email);
       if (userExists) {
           mensaje.textContent = "Este correo electrónico ya está registrado.";
           return;
       }
 
-      // Agregar el nuevo usuario a la lista con una lista de favoritos vacía
+      
       const newUser = { username, email, password, favorites: [] };
       userList.push(newUser);
 
-      // Guardar la lista actualizada en el localStorage
+      
       localStorage.setItem("userList", JSON.stringify(userList));
 
       window.location.href = "./Iniciar Secion.html";
